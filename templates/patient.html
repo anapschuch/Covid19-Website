@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ patients.name }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Voltar</a></li>
+    <li class="breadcrumb-item active">Paciente</li>
+{% endblock %}
+
+{% block content %}
+    <p>Nome: {{ patients.nome}}</p>
+    <p>Idade: {{ patients.idade }}</p>
+    <p><b>Sintomas:</b></p>
+    <p>Data de Início: {{ patients.data_inicio_sintomas }}</p>
+    <p>Temperatura Máxima: {{ patients.temperatura_maxima }}</p>
+{% endblock %}

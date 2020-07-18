@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Base de Dados Epidemiológica - COVID 19</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Paciente</th>
+          <th>Idade</th>
+          <th>Início dos Sintomas</th>
+          <th>Temperatura Máxima</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for patient in patients %}
+            <tr>
+                <td>
+                    <a href="{% url 'board_topics' patient.pk %}">{{ patient.nome }}</a>
+                    <!--<small class="text-muted d-block">{{ patient.description }}</small> -->
+                </td>
+                <td class="align-middle">{{ patient.idade }}</td>
+                <td class="align-middle">{{ patient.data_inicio_sintomas }}</td>
+                <td class="align-middle">{{ patient.temperatura_maxima }}</td>
+                <td></td>
+            </tr>
+          {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
