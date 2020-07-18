@@ -1,0 +1,99 @@
+<!-- Esboco da pagina para insercao de novos casos epidemiologicos da line list.-->
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>inserir-paciente</title>
+    </head>
+    <body>
+        <h1>Inserir novo paciente:</h1>
+        <h2>Informações do paciente:</h2>
+        <form action="" method="post"><!-- action="/url_desejada"-->
+            <p>
+                <label for="nome">Nome:</label>
+                <input type="text" name="name" id="nome">
+            </p>
+            <p>
+                <label for="idade">Idade:</label> <!-- Calcula a idade -->
+                <input type="number" name="age" id="idade">
+            </p>
+            <h2>Sintomas:</h2>
+            <p>
+                <label for="data_inicio">Data de início:</label>
+                <input type="date" name="onset_date" id="data_inicio">
+            </p>
+            <p> Tosse: </p>
+            <div>
+              <input type="radio" id="sim" name="cough" value=1 >
+              <label for="sim">SIM</label>
+            </div>
+            <div>
+              <input type="radio" id="nao" name="cough" value="0">
+              <label for="nao">NÃO</label>
+            </div>
+
+            <p>
+                <label for="maior_temperatura">Maior temperatura:</label>
+                <input type="number" name="user_highest_temp" id="maior_temperatura">
+            </p>
+
+            <p> Falta de ar: </p>
+            <div>
+              <input type="radio" id="sim" name="shortness_of_breath" value=1 >
+              <label for="sim">SIM</label>
+            </div>
+            <div>
+              <input type="radio" id="nao" name="shortness_of_breath" value="0">
+              <label for="nao">NÃO</label>
+            </div>
+
+            <label for="outros_sintomas">Outros sintomas:</label>
+            <textarea id="outros_sintomas" name="other_symptoms"></textarea>
+
+            <h2>Resultados:</h2>
+            <p> Teste SARS COV-2: </p>
+            <div>
+              <input type="radio" id="Positivo (+)" name="test_result" value=1 >
+              <label for="sim">SIM</label>
+            </div>
+            <div>
+              <input type="radio" id="Negativo (-)" name="test_result" value="0">
+              <label for="nao">NÃO</label>
+            </div>
+            <p>
+                <label for="data_teste">Data de realização do SARS COV-2:</label>
+                <input type="date" name="test_date" id="data_teste">
+            </p>
+
+
+            <p> Hospitalizado: </p>
+            <div>
+              <input type="radio" id="sim" name="hospitalized" value=1 >
+              <label for="sim">SIM</label>
+            </div>
+            <div>
+              <input type="radio" id="nao" name="hospitalized" value="0">
+              <label for="nao">NÃO</label>
+            </div>
+
+            <p> Óbito: </p>
+            <div>
+              <input type="radio" id="sim" name="died" value=1 >
+              <label for="sim">SIM</label>
+            </div>
+            <div>
+              <input type="radio" id="nao" name="died" value="0">
+              <label for="nao">NÃO</label>
+            </div>
+
+            <p>
+                <label for="data_obito">Data do óbito:</label>
+                <input type="date" name="death_date" id="data_obito">
+            </p>
+
+            <p>
+                <input type="submit" value="Inserir">
+            </p>
+        </form>
+    </body>
+</html>
