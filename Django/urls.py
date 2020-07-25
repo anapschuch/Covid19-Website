@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from accounts import views as accounts_views
-from patients import views
+from pacientes import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^admin/', admin.site.urls),
-    url(r'^pacientes/(?P<pk>\d+)/$', views.board_topics, name='board_topics'),
+    url(r'^pacientes/(?P<pk>\d+)/$', views.patient_description, name='patient_description'),
 ]

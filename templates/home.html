@@ -15,11 +15,10 @@
       </tr>
     </thead>
     <tbody>
-      {% for patient in patients %}
+      {% for patient in pacientes %}
             <tr>
                 <td>
-                    <a href="{% url 'board_topics' patient.pk %}">{{ patient.nome }}</a>
-                    <!--<small class="text-muted d-block">{{ patient.description }}</small> -->
+                    <a href="{% url 'patient_description' patient.pk %}" style="color:mediumblue">{{ patient.nome }}</a>
                 </td>
                 <td class="align-middle">{{ patient.idade }}</td>
                 <td class="align-middle">{{ patient.data_inicio_sintomas }}</td>

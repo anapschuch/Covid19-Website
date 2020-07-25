@@ -1,12 +1,62 @@
-{% extends 'base.html' %}
+{% extends 'base-clean.html' %}
+{% load widget_tweaks %}
 
-{% block body %}
-  <div class="container">
-    <h2>Sign up</h2>
-    <form method="post" novalidate>
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Create an account</button>
-    </form>
-  </div>
+{% block content %}
+    {% if form.errors %}
+        <br>
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger" style="width: 60rem;">
+                   {{ field.errors }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ error}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <hr style="width: 60rem; margin-left: 0;">
+    <div class="card" style="width: 60rem;">
+        <div class="card-header">
+            Cadastro
+        </div>
+        <div class="card-body">
+            <div class="container">
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form.email.errors %}
+                        {{ form.email.errors }}
+                    {% endif %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    {% if form.total_error_count %}
+                        <div class="alert alert-danger col-12 mx-1" role="alert">
+                            <div id="form_errors">
+                                {% for error in form.error_messages %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-info ml-2">Crie sua Conta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
 {% endblock %}
