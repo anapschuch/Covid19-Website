@@ -12,7 +12,7 @@
             {% endif %}
         {% endfor %}
         {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" style="width: 60rem;">
                 {{ error}}
             </div>
         {% endfor %}
@@ -28,9 +28,7 @@
 
                 <form method="post">
                     {% csrf_token %}
-                    {% if form.email.errors %}
-                        {{ form.email.errors }}
-                    {% endif %}
+
                     {% for field in form %}
                         <div class="form-group">
                             {{ field.label_tag }}
@@ -42,15 +40,7 @@
                             {% endif %}
                         </div>
                     {% endfor %}
-                    {% if form.total_error_count %}
-                        <div class="alert alert-danger col-12 mx-1" role="alert">
-                            <div id="form_errors">
-                                {% for error in form.error_messages %}
-                                    {{ error }}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endif %}
+
                     <button type="submit" class="btn btn-info ml-2">Crie sua Conta</button>
                 </form>
             </div>
