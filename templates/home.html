@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block content %}
+    <form class="form-inline float-right">
+        <input class="form-control mr-sm-2" type="search" placeholder={{ pesquisar }} aria-label="Pesquisar" name="pesquisar">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+    </form>
+    <br>
+    <br>
+    <br>
   <table class="table">
     <thead class="thead-inverse">
       <tr>
@@ -15,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for patient in pacientes %}
+          {% for patient in pacientes %}
             <tr>
                 <td>
                     <a href="{% url 'patient_description' patient.pk %}" style="color:mediumblue">{{ patient.nome }}</a>
