@@ -5,7 +5,9 @@ from .models import Paciente
 def home(request):
     pesquisar = request.GET.get('pesquisar')
     if pesquisar is not None:
-        pacientes = Paciente.objects.filter(nome__startswith=pesquisar)
+        pacientes = Paciente.objects.filter(nome__startswith=pesquisar).order_by('nome')
+        if len(pesquisar) == 0:
+            pesquisar = "Nome"
     else:
         pacientes = Paciente.objects.all().order_by('nome')
         pesquisar = "Nome"
