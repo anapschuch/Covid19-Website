@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Alterar Informações do Usuário</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            Alterar Senha
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-info ml-2">Alterar Senha</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+{% endblock %}

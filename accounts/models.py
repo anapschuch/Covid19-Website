@@ -7,3 +7,6 @@ class Perfil(models.Model):
     profissão = models.CharField(default='', max_length=50)
     cidade = models.CharField(default='', max_length=50)
 
+    def __str__(self):
+        return f'{self.user.username} perfil'
+

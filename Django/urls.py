@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.urls import path
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
@@ -23,6 +24,18 @@ from pacientes import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^home/$', views.home_logged, name='home-logged'),
+    url(r'^conta/senha/$', auth_views.PasswordChangeView.as_view(template_name='mudar-senha.html'),
+        name='mudar-senha'),
+    url(r'^conta/senha/alterada/$', auth_views.PasswordChangeDoneView.as_view(template_name='senha-alterada-sucesso.html'),
+    name='password_change_done'),
+    url(r'^resetar-senha/$', auth_views.PasswordResetView.as_view(template_name='resetar-senha.html'),
+        name='resetar-senha'),
+    url(r'^resetar-senha/sucesso$', auth_views.PasswordResetDoneView.as_view(
+        template_name='resetar-senha-sucesso.html'), name='password_reset_done'),
+    url(r'^resetar-senha-completado/$', auth_views.PasswordResetCompleteView.as_view(
+        template_name='senha-resetada-com-sucesso.html'), name='password_reset_complete'),
+    path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+        template_name='resetar-senha-confirmar.html'), name='password_reset_confirm'),
     url(r'^conta/$', accounts_views.minha_conta, name='conta'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^about/$', views.about, name='about'),

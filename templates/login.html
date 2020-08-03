@@ -2,6 +2,22 @@
 {% load widget_tweaks %}
 
 {% block content %}
+{% if form.errors %}
+        <br>
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger" style="width: 58rem;">
+                   {{ field.errors }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger" style="width: 58rem;">
+                {{ error}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <hr style="width: 58rem; margin-left: 0;">
     <div class="card" style="width: 58rem;">
         <div class="card-header">
@@ -12,8 +28,23 @@
 
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
                     <button type="submit" class="btn btn-info ml-2">Entrar</button>
+                    <small class="text-muted float-right">
+                        <a href="{% url 'resetar-senha' %}">Esqueceu sua Senha?</a>
+                    </small>
                 </form>
             </div>
         </div>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Resetar Senha</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <div class="alert alert-success" role="alert">
+        Um e-mail foi enviado com instruções para resetar sua senha.
+        Caso não tenha encontrado, cheque o spam.
+    </div>
+{% endblock %}
