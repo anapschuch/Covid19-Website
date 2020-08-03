@@ -18,6 +18,10 @@ def about(request):
     return render(request, 'about.html')
 
 
+def home_logged(request):
+    return render(request, 'home-logged-user.html')
+
+
 def patient_description(request, pk):
     pacientes = get_object_or_404(Paciente, pk=pk)
     return render(request, 'patient.html', {'pacientes': pacientes})

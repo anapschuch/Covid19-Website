@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Mural</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <div class="card-deck">
+        <div class="card text-center bg-light mb-3">
+              <div class="card-header">
+                Visualizar Dados
+              </div>
+            <img class="card-img-top" src="{% static "grafico2.png" %}">
+            <div class="card-body">
+                <center>
+                    <a href="#" type="button" class="btn btn-secondary ml-2">Gráficos</a>
+                    <a href="{% url 'home' %}" type="button" class="btn btn-secondary ml-2">Tabela</a>
+                </center>
+            </div>
+        </div>
+        <div class="card text-center bg-light mb-3">
+            <div class="card-header">
+                Pacientes
+            </div>
+            <img class="card-img-top" src="{% static "paciente3.png" %}">
+            <div class="card-body">
+                <center>
+                    <a href="#" type="button" class="btn btn-secondary ml-2">Inserir</a>
+                    <a href="#" type="button" class="btn btn-secondary ml-2">Editar</a>
+                </center>
+            </div>
+        </div>
+        <div class="card text-center bg-light mb-3">
+            <div class="card-header">
+                Conta
+            </div>
+            <img class="card-img-center" src="{% static "conta3.png" %}" height="250px" width="250px" style="margin-top: 70px; margin-left: 60px">
+            <div class="card-body" style="margin-top: 30px">
+                <center>
+                    <a href="{% url 'conta' %}" type="button" class="btn btn-secondary ml-2">Minha Conta</a>
+                    <a href="#" type="button" class="btn btn-secondary ml-2">Alterar Senha</a>
+                </center>
+            </div>
+        </div>
+    </div>
+{% endblock %}

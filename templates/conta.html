@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Alterar Informações do Usuário</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    {% if messages %}
+        <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if user_form.errors %}
+        <br>
+        {% for field in user_form %}
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                   {{ field.errors }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for error in user_form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ error}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if profile_form.errors %}
+        <br>
+        {% for field in profile_form %}
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                   {{ field.errors }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for error in profile_form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ error}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            Minha Conta
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% for field in user_form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    {% for field in profile_form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-info ml-2">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+{% endblock %}
