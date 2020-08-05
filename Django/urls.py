@@ -20,9 +20,13 @@ from django.contrib.auth import views as auth_views
 
 from accounts import views as accounts_views
 from pacientes import views
+from query_data import views as query_data_views
+from .views import home
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    #Django
+    url(r'^$', home, name='home'),
+    #'pacientes', 'accounts'
     url(r'^home/$', views.home_logged, name='home-logged'),
     url(r'^conta/senha/$', auth_views.PasswordChangeView.as_view(template_name='mudar-senha.html'),
         name='mudar-senha'),
@@ -41,6 +45,8 @@ urlpatterns = [
     url(r'^about/$', views.about, name='about'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-    url(r'^admin/', admin.site.urls),
     url(r'^pacientes/(?P<pk>\d+)/$', views.patient_description, name='patient_description'),
+    #'query_data'
+    url(r'^consultar-dados$', query_data_views.query_home ,name='query_data'),
+    url(r'^admin/', admin.site.urls),
 ]
