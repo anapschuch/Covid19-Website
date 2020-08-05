@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Consulta de Dados</li>
+{% endblock %}
+
+{% block content %}
+<h2>Histograma:</h2>
+<form action="{% url 'query_data_results' %}" method="get">
+    <h5>Parâmetro:</h5>
+  <div>
+    <input type="radio" id="param1"
+     name="param" value="idade" checked>
+    <label for="param1">Idade</label>
+  </div>
+  <div>
+    <input type="radio" id="param2"
+     name="param" value="temperatura_maxima">
+    <label for="param2">Temperatura máxima</label>
+  </div>
+  <div>
+    <input type="radio" id="param3"
+     name="param" value="data_inicio_sintomas">
+    <label for="param3">Data de início</label>
+  </div>
+
+  <div>
+    <input type="hidden" name="type" value="graph">
+    <button type="submit">Visualizar</button>
+  </div>
+</form>
+
+<br>
+
+<h2>Tabela:</h2>
+<form action="{% url 'query_data_results' %}" method="get">
+  <div>
+    <input type="hidden" name="param" value="">
+    <input type="hidden" name="type" value="line_listing">
+    <button type="submit">Visualizar</button>
+  </div>
+</form>
+{% endblock %}

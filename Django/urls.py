@@ -26,6 +26,7 @@ from .views import home
 urlpatterns = [
     #Django
     url(r'^$', home, name='home'),
+
     #'pacientes', 'accounts'
     url(r'^home/$', views.home_logged, name='home-logged'),
     url(r'^conta/senha/$', auth_views.PasswordChangeView.as_view(template_name='mudar-senha.html'),
@@ -46,7 +47,11 @@ urlpatterns = [
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^pacientes/(?P<pk>\d+)/$', views.patient_description, name='patient_description'),
+
     #'query_data'
-    url(r'^consultar-dados$', query_data_views.query_home ,name='query_data'),
+    url(r'^consultar-dados/$', query_data_views.query_home ,name='query_data'),
+    url(r'^visualizar-dados/$', query_data_views.return_results ,name='query_data_results'),
+
+    #'admin'
     url(r'^admin/', admin.site.urls),
 ]
