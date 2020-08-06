@@ -4,35 +4,20 @@
   <li class="breadcrumb-item active">Base de Dados Epidemiológica - COVID 19</li>
 {% endblock %}
 
+{% load static %}
+
 {% block content %}
-    <form class="form-inline float-right">
-        <input class="form-control mr-sm-2" type="search" placeholder="{{ pesquisar }}" aria-label="Pesquisar" name="pesquisar">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-    </form>
-    <br>
-    <br>
-    <br>
-  <table class="table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Paciente</th>
-          <th>Idade</th>
-          <th>Início dos Sintomas</th>
-          <th>Temperatura Máxima</th>
-      </tr>
-    </thead>
-    <tbody>
-          {% for patient in pacientes %}
-            <tr>
-                <td>
-                    <a href="{% url 'patient_description' patient.pk %}" style="color:mediumblue">{{ patient.nome }}</a>
-                </td>
-                <td class="align-middle">{{ patient.idade }}</td>
-                <td class="align-middle">{{ patient.data_inicio_sintomas }}</td>
-                <td class="align-middle">{{ patient.temperatura_maxima }}</td>
-                <td></td>
-            </tr>
-          {% endfor %}
-    </tbody>
-  </table>
+    <div class="card-deck">
+        <div class="card text-center bg-light mb-3">
+              <div class="card-header">
+                Visualizar Dados
+              </div>
+            <img class="card-img-top" src="{% static "grafico2.png" %}">
+            <div class="card-body">
+                <center>
+                    <a href="{% url 'query_data' %}" type="button" class="btn btn-secondary ml-2">Consultar</a>
+                </center>
+            </div>
+        </div>
+    </div>
 {% endblock %}

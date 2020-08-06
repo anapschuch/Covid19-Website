@@ -2,7 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import Paciente
 
 
-def home(request):
+def patient_edit(request):
+    '''
+    Returns the patient editor. 
+    '''
     pesquisar = request.GET.get('pesquisar')
     if pesquisar is not None:
         pacientes = Paciente.objects.filter(nome__startswith=pesquisar).order_by('nome')
@@ -11,7 +14,7 @@ def home(request):
     else:
         pacientes = Paciente.objects.all().order_by('nome')
         pesquisar = "Nome"
-    return render(request, 'home.html', {'pacientes': pacientes, 'pesquisar': pesquisar})
+    return render(request, 'patient_edit.html', {'pacientes': pacientes, 'pesquisar': pesquisar})
 
 
 def about(request):

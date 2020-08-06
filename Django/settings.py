@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'accounts',
     'pacientes',
+    'query_data',
 ]
 
 MIDDLEWARE = [
