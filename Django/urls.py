@@ -27,8 +27,8 @@ urlpatterns = [
     #Django
     url(r'^$', home, name='home'),
 
-    #'pacientes', 'accounts'
-    url(r'^home/$', views.home_logged, name='home-logged'),
+    #'pacientes', 'accounts' --> log in system
+    url(r'^home-logged/$', views.home_logged, name='home_logged'),
     url(r'^conta/senha/$', auth_views.PasswordChangeView.as_view(template_name='mudar-senha.html'),
         name='mudar-senha'),
     url(r'^conta/senha/alterada/$', auth_views.PasswordChangeDoneView.as_view(template_name='senha-alterada-sucesso.html'),
@@ -46,7 +46,11 @@ urlpatterns = [
     url(r'^about/$', views.about, name='about'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+
+    #'pacientes', 'accounts' --> add and edit patients
+    url(r'^pacientes/$', views.patient_edit, name='patient_edit'),
     url(r'^pacientes/(?P<pk>\d+)/$', views.patient_description, name='patient_description'),
+
 
     #'query_data'
     url(r'^consultar-dados/$', query_data_views.query_home ,name='query_data'),

@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'home-logged'
+LOGIN_REDIRECT_URL = 'home_logged'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
