@@ -1,26 +1,26 @@
 from django.urls import reverse
 from django.test import TestCase
-from .views import home, patient_description
+from .views import patient_edit, patient_description
 from django.urls import resolve
 from .models import Paciente
 from datetime import date
 
 
-class HomeTests(TestCase):
+class PatientEditTests(TestCase):
     def setUp(self):
         self.patient = Paciente.objects.create(nome='João da Silva', idade=70, data_inicio_sintomas=date.today(),
                                                temperatura_maxima=38)
-        url = reverse('home')
+        url = reverse('patient_edit')
         self.response = self.client.get(url)
 
-    def test_home_view_status_code(self):
+    def test_patient_edit_view_status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
-    def test_home_url_resolves_home_view(self):
-        view = resolve('/')
-        self.assertEquals(view.func, home)
+    def test_patient_edit_url_resolves_patient_edit_view(self):
+        view = resolve('/pacientes/')
+        self.assertEquals(view.func, patient_edit)
 
-    def test_home_view_contains_link_to_patients_page(self):
+    def test_patient_edit_view_contains_link_to_patients_page(self):
         patients_description_url = reverse('patient_description', kwargs={'pk': self.patient.pk})
         self.assertContains(self.response, 'href="{0}"'.format(patients_description_url))
 
@@ -47,5 +47,5 @@ class PatientsDescriptionTests(TestCase):
     def test_patient_view_contains_link_back_to_homepage(self):
         patient_url = reverse('patient_description', kwargs={'pk': 1})
         response = self.client.get(patient_url)
-        homepage_url = reverse('home')
+        homepage_url = reverse('patient_edit')
         self.assertContains(response, 'href="{0}"'.format(homepage_url))

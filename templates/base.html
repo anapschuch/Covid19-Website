@@ -13,7 +13,7 @@
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
           <div class="container">
               {% if user.is_authenticated %}
-                  <a class="navbar-brand" href="{% url 'home-logged' %}">Covid-19</a>
+                  <a class="navbar-brand" href="{% url 'home_logged' %}">Covid-19</a>
               {% else %}
                   <a class="navbar-brand" href="{% url 'home' %}">Covid-19</a>
               {% endif %}
@@ -29,7 +29,7 @@
                                   {{ user.username }}
                               </a>
                               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                                  <a class="dropdown-item" href="{% url 'home-logged' %}">Mural</a>
+                                  <a class="dropdown-item" href="{% url 'home_logged' %}">Mural</a>
                                   <a class="dropdown-item" href="{% url 'conta' %}">Minha Conta</a>
                                   <a class="dropdown-item" href="{% url 'mudar-senha' %}">Alterar Senha</a>
                                   <div class="dropdown-divider"></div>
