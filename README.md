@@ -22,3 +22,4 @@ Integrantes:
   
   django-widget-tweaks 1.4.8
   
+  mpld3
