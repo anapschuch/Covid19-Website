@@ -4,9 +4,10 @@ from django.http      import FileResponse
 from pacientes.models import Paciente
 import matplotlib.pyplot as plt, mpld3
 import pandas            as pd
+from reportlab.lib           import colors
 from reportlab.pdfgen        import canvas
-from reportlab.lib.pagesizes import letter
-from reportlab.platypus      import SimpleDocTemplate, Table
+from reportlab.lib.pagesizes import A4
+from reportlab.platypus      import SimpleDocTemplate, Table, TableStyle
 
 #Define constants:
 LIMIT = 10000
@@ -27,13 +28,19 @@ def return_results (request):
     all_patients = Paciente.objects.all()[:LIMIT].values() #List of dictionaries.
     table        = pd.DataFrame(all_patients)
     table.drop("nome", axis=1, inplace=True) #Eliminates the column 'nome'.
-    if type == 'hist':
+    if type == 'hist': #Returns the histogram.
         fig = plt.figure()
-        table[param].hist()
+        label = param.upper().replace('_', ' ')
+        if param == "temperatura_maxima":
+            label = ''.join([label, "(°C)"])
+        table[param].hist(bins=30)
+        plt.xlabel(label)
+        plt.ylabel('Frequência')
+        plt.title('Histograma')
         histogram = mpld3.fig_to_html(fig)
         context = {'histogram':histogram, 'type':type}
         return render(request, 'show_results.html', context)
-    elif type == 'line_listing':
+    elif type == 'line_listing': #Returns the line-list.
         #Transform table from DataFrame to a list of lists:
         data      = table.to_string(index=False).splitlines()
         data_copy = data.copy()
@@ -41,6 +48,8 @@ def return_results (request):
         #First line:
         first_line = []
         for word in data_copy[0].split():
+            if word == "temperatura_maxima":
+                word = ''.join([word, "(°C)"])
             first_line.append(word.upper().replace('_', ' '))
         data.append(first_line)
         for n, line in enumerate(data_copy):
@@ -49,9 +58,20 @@ def return_results (request):
         buffer = io.BytesIO() # Create a file-like buffer to receive PDF data.
         pdf = SimpleDocTemplate(
         buffer,
-        pagesize=letter
+        pagesize=A4,
+        title="Line List COVID - 19",
         )
-        table_list = Table(data)
+        table_list = Table(data, repeatRows=1)
+        #Set style:
+        style = TableStyle([
+            ('FONTNAME', (0, 0), (-1, 0), 'Times-Bold'),   #Font name of the first line.
+            ('FONTNAME', (0, 1), (-1, -1), 'Times-Roman'), #Font name of the remaining table.
+            ('FONTSIZE', (0, 0), (-1, 0), 12),  #Font size of the first line.
+            ('FONTSIZE', (0, 1), (-1, -1), 10),  #Font size of the remaining table.
+            ('GRID', (0, 0), (-1, -1), 2, colors.black),
+        ])
+        table_list.setStyle(style)
+        title = "Line Listing COVID - 19"
         pdf.build([table_list])
         buffer.seek(0)
         return FileResponse(buffer, as_attachment=False, filename='line_list_COVID19.pdf')
