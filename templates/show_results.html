@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Consulta de Dados</li>
+{% endblock %}
+
+{% block content %}
+    {% if type == 'hist' %}
+        <h2>Histograma:</h2>
+        {% autoescape off %}
+        <div>{{histogram}}</div>
+        {% endautoescape %}
+    {% endif %}
+{% endblock %}
