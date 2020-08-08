@@ -16,7 +16,6 @@
         </div>
     {% endif %}
     {% if user_form.errors %}
-        <br>
         {% for field in user_form %}
             {% if field.errors %}
                 <div class="alert alert-danger">
@@ -32,7 +31,6 @@
     {% endif %}
 
     {% if profile_form.errors %}
-        <br>
         {% for field in profile_form %}
             {% if field.errors %}
                 <div class="alert alert-danger">

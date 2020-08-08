@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {{ patients.name }} - {{ block.super }}
+  {{ block.super }}
 {% endblock %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color:mediumblue">Voltar</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color:mediumblue">Voltar</a></li>
     <li class="breadcrumb-item active">Sobre</li>
 {% endblock %}
 
@@ -14,7 +14,7 @@
     <hr>
     <h6>Ana Paula Lopes Schuch</h6>
     <h6>Artur Assis Alves</h6>
-    <h6>Vinícius Brito Bastos Antues</h6>
+    <h6>Vinícius Brito Bastos Antunes</h6>
     <br>
     <h6>Site desenvolvido para a disciplina de CES-22 do ITA</h6>
 {% endblock %}
