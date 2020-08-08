@@ -7,7 +7,7 @@ Integrantes:
 
   Artur Assis Alves
 
-  Vinicius Brito Bastos Neto
+  Vinícius Brito Bastos Antunes
 
 # OBS: 
 1 - Os pacotes que precisam ser instalados na máquina do desenvolvedor se encontram no arquivo requirements-dev.txt. O arquivo requirements.txt será utilizado para fazer deploy no servidor e ele chamará o arquivo requirements-dev.txt para instalar todos pacotes dele além de instalar mais dois, que não precisam ser instalados na máquina do desenvolvedor.
