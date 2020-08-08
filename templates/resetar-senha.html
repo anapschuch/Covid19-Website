@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block breadcrumb %}
   <li class="breadcrumb-item active">Senha</li>
@@ -7,6 +8,20 @@
 {% load static %}
 
 {% block content %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                   {{ field.errors }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ error}}
+            </div>
+        {% endfor %}
+    {% endif %}
     <hr>
     <div class="card">
         <div class="card-header">
@@ -16,7 +31,17 @@
             <div class="container">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                     <button type="submit" class="btn btn-info ml-2">Resetar Senha</button>
                 </form>
             </div>

@@ -24,15 +24,16 @@ from query_data import views as query_data_views
 from .views import home
 
 urlpatterns = [
-    #Django
+    # Django
     url(r'^$', home, name='home'),
 
-    #'pacientes', 'accounts' --> log in system
+    # 'pacientes', 'accounts' --> log in system
     url(r'^home-logged/$', views.home_logged, name='home_logged'),
     url(r'^conta/senha/$', auth_views.PasswordChangeView.as_view(template_name='mudar-senha.html'),
         name='mudar-senha'),
-    url(r'^conta/senha/alterada/$', auth_views.PasswordChangeDoneView.as_view(template_name='senha-alterada-sucesso.html'),
-    name='password_change_done'),
+    url(r'^conta/senha/alterada/$',
+        auth_views.PasswordChangeDoneView.as_view(template_name='senha-alterada-sucesso.html'),
+        name='password_change_done'),
     url(r'^resetar-senha/$', auth_views.PasswordResetView.as_view(template_name='resetar-senha.html'),
         name='resetar-senha'),
     url(r'^resetar-senha/sucesso$', auth_views.PasswordResetDoneView.as_view(
@@ -47,15 +48,14 @@ urlpatterns = [
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
-    #'pacientes', 'accounts' --> add and edit patients
+    # 'pacientes', 'accounts' --> add and edit patients
     url(r'^pacientes/$', views.patient_edit, name='patient_edit'),
     url(r'^pacientes/(?P<pk>\d+)/$', views.patient_description, name='patient_description'),
 
+    # 'query_data'
+    url(r'^consultar-dados/$', query_data_views.query_home, name='query_data'),
+    url(r'^visualizar-dados/$', query_data_views.return_results, name='query_data_results'),
 
-    #'query_data'
-    url(r'^consultar-dados/$', query_data_views.query_home ,name='query_data'),
-    url(r'^visualizar-dados/$', query_data_views.return_results ,name='query_data_results'),
-
-    #'admin'
+    # 'admin'
     url(r'^admin/', admin.site.urls),
 ]
