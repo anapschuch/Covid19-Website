@@ -11,6 +11,7 @@ Integrantes:
 
 # OBS: 
 1 - Os pacotes que precisam ser instalados na máquina do desenvolvedor se encontram no arquivo requirements-dev.txt. O arquivo requirements.txt será utilizado para fazer deploy no servidor e ele chamará o arquivo requirements-dev.txt para instalar todos pacotes dele além de instalar mais dois, que não precisam ser instalados na máquina do desenvolvedor.
+
 2 - É importante não publicar as variáveis SECRET_KEY e DEBUG. Por isso, utilizar a lib decouple pode ajudar.
 
 ## Instalar os seguintes pacotes para iniciar o servidor:
