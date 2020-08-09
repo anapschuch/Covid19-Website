@@ -1,0 +1,60 @@
+{% if pacientes.has_other_pages %}
+  <nav aria-label="Topics pagination" class="mb-4">
+    <ul class="pagination justify-content-center">
+      {% if pacientes.number > 1 %}
+        <li class="page-item">
+          <a class="page-link text-success" href="?page=1">Primeira</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Primeira</span>
+        </li>
+      {% endif %}
+
+      {% if pacientes.has_previous %}
+        <li class="page-item">
+          <a class="page-link text-success" href="?page={{ pacientes.previous_page_number }}">Anterior</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Anterior</span>
+        </li>
+      {% endif %}
+
+      {% for page_num in pacientes.paginator.page_range %}
+        {% if pacientes.number == page_num %}
+          <li class="page-item active">
+            <span class="page-link" style="border-color: forestgreen; background-color: forestgreen; color:white;">
+              {{ page_num }}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+        {% elif page_num > pacientes.number|add:'-3' and page_num < pacientes.number|add:'3' %}
+          <li class="page-item">
+            <a class="page-link text-success" href="?page={{ page_num }}">{{ page_num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if pacientes.has_next %}
+        <li class="page-item">
+          <a class="page-link text-success" href="?page={{ pacientes.next_page_number }}">Próxima</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Próxima</span>
+        </li>
+      {% endif %}
+
+      {% if pacientes.number != pacientes.paginator.num_pages %}
+        <li class="page-item">
+          <a class="page-link text-success" href="?page={{ pacientes.paginator.num_pages }}">Última</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Última</span>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

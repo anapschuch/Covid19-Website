@@ -7,7 +7,10 @@
 {% block content %}
     <form class="form-inline float-right">
         <input class="form-control mr-sm-2" type="search" placeholder="{{ pesquisar }}" aria-label="Pesquisar" name="pesquisar">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
+    </form>
+    <form class="form-inline float-left">
+        <a href="{% url 'patient_edit' %}" type="button" class="btn btn-outline-success">Limpar Busca</a>
     </form>
     <br>
     <br>
@@ -35,4 +38,7 @@
           {% endfor %}
     </tbody>
   </table>
+    <br>
+
+    {% include 'paginacao.html' %}
 {% endblock %}
