@@ -27,7 +27,7 @@ def return_results (request):
     type   = request.GET['type']
     #Uses Paciente's manager (called objects) to retrieve all Paciente's instances:
     all_patients = Paciente.objects.all()[:LIMIT].values() #List of dictionaries.
-    if len(all_patients) == 4:#There are no patients
+    if len(all_patients) == 0:#There are no patients
         messages.add_message(request, messages.ERROR, 'Não há pacientes cadastrados no banco de dados.')
         return redirect('no_results')
     table        = pd.DataFrame(all_patients)
