@@ -14,6 +14,8 @@ Integrantes:
 
 2 - É importante não publicar as variáveis SECRET_KEY e DEBUG. Por isso, utilizar a lib decouple pode ajudar.
 
+3 - É necessário incluir EMAIL_HOST_USER e EMAIL_HOST_PASSWORD nas variáveis de ambiente. Elas se referem ao e-mail que envia mensagem de recuperação de senha.
+
 ### Instalar os seguintes pacotes para iniciar o servidor:
 
   python               3.7.7
@@ -32,3 +34,11 @@ Integrantes:
 
 
 #### Para realizar o deploy no Heroku, foi utilizado o tutorial: https://github.com/Gpzim98/django-heroku
+
+#### Tutoriais utilizados para construção do site:
+
+https://simpleisbetterthancomplex.com/series/beginners-guide/1.11/
+
+https://tutorial.djangogirls.org/pt/
+
+https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p
