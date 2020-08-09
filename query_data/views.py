@@ -1,6 +1,7 @@
 import io
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http      import FileResponse
+from django.contrib   import messages
 from pacientes.models import Paciente
 import matplotlib.pyplot as plt, mpld3
 import pandas            as pd
@@ -26,6 +27,9 @@ def return_results (request):
     type   = request.GET['type']
     #Uses Paciente's manager (called objects) to retrieve all Paciente's instances:
     all_patients = Paciente.objects.all()[:LIMIT].values() #List of dictionaries.
+    if len(all_patients) == 4:#There are no patients
+        messages.add_message(request, messages.ERROR, 'Não há pacientes cadastrados no banco de dados.')
+        return redirect('no_results')
     table        = pd.DataFrame(all_patients)
     table.drop("nome", axis=1, inplace=True) #Eliminates the column 'nome'.
     if type == 'hist': #Returns the histogram.
@@ -75,3 +79,7 @@ def return_results (request):
         pdf.build([table_list])
         buffer.seek(0)
         return FileResponse(buffer, as_attachment=False, filename='line_list_COVID19.pdf')
+
+
+def no_results (request):
+    return render(request, 'query_home_no_results.html')

@@ -56,6 +56,7 @@ urlpatterns = [
     # 'query_data'
     url(r'^consultar-dados/$', query_data_views.query_home, name='query_data'),
     url(r'^visualizar-dados/$', query_data_views.return_results, name='query_data_results'),
+    url(r'^visualizar-dados/sem-resultados$', query_data_views.no_results, name='no_results'),
 
     # 'admin'
     url(r'^admin/', admin.site.urls),
