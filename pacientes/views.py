@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Paciente
 from .forms import InsertPatient
+from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -40,18 +41,28 @@ def about(request):
 def home_logged(request):
     return render(request, 'home-logged-user.html')
 
+
 @login_required
 def patient_insertion(request):
     if request.method == 'POST':
         form = InsertPatient(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, f'Paciente inserido com sucesso!')
             return redirect('patient_insertion')
     else:
         form = InsertPatient()
     return render(request, 'patient_new.html', {'form': form})
 
+
 @login_required
 def patient_description(request, pk):
-    pacientes = get_object_or_404(Paciente, pk=pk)
-    return render(request, 'patient.html', {'pacientes': pacientes})
+    paciente = get_object_or_404(Paciente, pk=pk)
+    if request.method == 'POST':
+        patient_form = InsertPatient(request.POST, instance=paciente)
+        if patient_form.is_valid():
+            patient_form.save()
+            messages.success(request, f'Paciente editado com sucesso!')
+    else:
+        patient_form = InsertPatient(instance=paciente)
+    return render(request, 'patient.html', {'form': patient_form})

@@ -7,24 +7,31 @@
 {% endblock %}
 
 {% block content %}
+    {% if messages %}
+        <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
     {% if form.errors %}
         <br>
         {% for field in form %}
             {% if field.errors %}
-                <div class="alert alert-danger" style="width: 58rem;">
+                <div class="alert alert-danger">
                    {{ field.errors }}
                 </div>
             {% endif %}
         {% endfor %}
         {% for error in form.non_field_errors %}
-            <div class="alert alert-danger" style="width: 58rem;">
+            <div class="alert alert-danger">
                 {{ error}}
             </div>
         {% endfor %}
     {% endif %}
 
-    <hr style="width: 58rem; margin-left: 0;">
-    <div class="card" style="width: 58rem;">
+    <hr>
+    <div class="card">
         <div class="card-header">
             Cadastro
         </div>
