@@ -26,7 +26,7 @@
             <img class="card-img-top" src="{% static "paciente3.png" %}">
             <div class="card-body">
                 <center>
-                    <a href="#" type="button" class="btn btn-secondary ml-2">Inserir</a>
+                    <a href="{% url 'patient_insertion'%}" type="button" class="btn btn-secondary ml-2">Inserir</a>
                     <a href="{% url 'patient_edit'%}" type="button" class="btn btn-secondary ml-2">Editar</a>
                 </center>
             </div>

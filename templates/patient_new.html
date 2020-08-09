@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Inserção de novo paciente</li>
+{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <br>
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger" style="width: 58rem;">
+                   {{ field.errors }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger" style="width: 58rem;">
+                {{ error}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <hr style="width: 58rem; margin-left: 0;">
+    <div class="card" style="width: 58rem;">
+        <div class="card-header">
+            Cadastro
+        </div>
+        <div class="card-body">
+            <div class="container">
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-info ml-2">Cadastrar paciente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+{% endblock %}

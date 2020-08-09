@@ -39,6 +39,9 @@ def about(request):
 def home_logged(request):
     return render(request, 'home-logged-user.html')
 
+@login_required
+def patient_insertion(request):
+    return render(request, 'patient_new.html')
 
 @login_required
 def patient_description(request, pk):

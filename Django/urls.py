@@ -49,6 +49,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
     # 'pacientes', 'accounts' --> add and edit patients
+    url(r'^pacientes/new/$', views.patient_insertion, name='patient_insertion'),
     url(r'^pacientes/$', views.patient_edit, name='patient_edit'),
     url(r'^pacientes/(?P<pk>\d+)/$', views.patient_description, name='patient_description'),
 
