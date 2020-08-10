@@ -7,7 +7,7 @@ class Paciente(models.Model):
     idade = models.IntegerField(null=True)
     temperatura_maxima = models.FloatField(null=True)
     data_inicio_sintomas = models.DateField(null=True)
-
+    
     def __str__(self):
         return self.nome
 

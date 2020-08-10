@@ -44,6 +44,7 @@ def home_logged(request):
 
 @login_required
 def patient_insertion(request):
+    
     if request.method == 'POST':
         form = InsertPatient(request.POST)
         if form.is_valid():
@@ -58,6 +59,12 @@ def patient_insertion(request):
 @login_required
 def patient_description(request, pk):
     paciente = get_object_or_404(Paciente, pk=pk)
+    remove = request.GET.get('delete')
+    
+    if remove is not None:
+        paciente.delete()
+        return redirect('patient_edit')
+    
     if request.method == 'POST':
         patient_form = InsertPatient(request.POST, instance=paciente)
         if patient_form.is_valid():
